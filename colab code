@@ -1,0 +1,53 @@
+!pip install ultralytics
+
+import zipfile
+import os
+
+# Define the zip file path
+zip_file_path = '/dataset.zip'
+
+# Verify if the file exists
+if os.path.isfile(zip_file_path):
+    # Unzip the file
+    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        zip_ref.extractall('dataset')
+
+    # List the files in the extracted directory
+    extracted_files = os.listdir('dataset')
+    print(f'Extracted files: {extracted_files}')
+else:
+    print(f'File {zip_file_path} not found. Please check the uploaded file path.')
+
+# Define the zip file path
+zip_file_path = '/tomato--detection.v1i.yolov8.zip'
+
+# Verify if the file exists
+if os.path.isfile(zip_file_path):
+    # Unzip the file
+    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        zip_ref.extractall('tomato--detection.v1i.yolov8')
+
+    # List the files in the extracted directory
+    extracted_files = os.listdir('tomato--detection.v1i.yolov8')
+    print(f'Extracted files: {extracted_files}')
+else:
+    print(f'File {zip_file_path} not found. Please check the uploaded file path.')
+
+from ultralytics import YOLO
+
+# Load a model
+model = YOLO("yolov8n.yaml")  # build a new model from scratch
+results = model.train(data="/content/google_colab_file.yaml", epochs=30)  # train the model
+
+# Step 1: Check current directory contents (optional, to confirm paths)
+!ls /content/runs/detect
+
+# Step 2: Zip the folder located in /content/runs/detect/train4
+!zip -r /content/train4.zip /content/runs/detect/train4
+
+# Step 3: Verify the zip file is created
+!ls /content
+
+# Step 4: Download the zipped folder
+from google.colab import files
+files.download('/content/train4.zip')
