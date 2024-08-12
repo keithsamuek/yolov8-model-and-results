@@ -1,0 +1,6 @@
+path: /content/tomato--detection.v1i.yolov8
+train: /content/tomato--detection.v1i.yolov8/train
+val: /content/tomato--detection.v1i.yolov8/test
+
+names:
+  0: tomato
