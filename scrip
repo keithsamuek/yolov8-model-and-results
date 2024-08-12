@@ -1,0 +1,47 @@
+Procedure:
+Annotate images using roboflow (train and test images)
+export dataset in yolov8 format
+
+paste google colab code into google colab
+create .yaml file under /content in google colab (just paste .yaml file in github)
+adjust yolov8 model to be used and epoch coefficient
+model may take 1 hour or more to run
+analyze results
+
+訓練出目前的成果:
+uploaded in 'results' branch
+
+如何評估模型:
+Precision: The proportion of true positive detections out of all positive detections (true positives + false positives). High precision means few false positives.
+Recall: The proportion of true positive detections out of all actual positives (true positives + false negatives). High recall means few false negatives.
+Confidence Threshold: The minimum probability required for the model to consider a detection as positive. Lowering this threshold increases the number of detected objects but may introduce more false positives.
+
+Key Terms in the Confusion Matrix:
+True Positive (TP): Correctly predicted positive cases.
+True Negative (TN): Correctly predicted negative cases.
+False Positive (FP): Incorrectly predicted as positive (Type I error).
+False Negative (FN): Incorrectly predicted as negative (Type II error).
+
+These values can help with metric of accuracy, recall, precision, F1 score and specificity.
+
+Results (8 graphs):
+Training Losses:
+
+Box Loss: Decreases steadily and stabilizes, showing a clear downward trend.
+Classification Loss (cls_loss): Also decreases, with a smooth curve indicating effective learning.
+DFL Loss (dfl_loss): Decreases similarly, indicating that the model is learning well across different loss components.
+Validation Losses:
+
+Box Loss: Decreases and stabilizes, mirroring the training loss trend.
+Classification Loss: More fluctuations are observed here, but the overall trend is still downward.
+DFL Loss: Decreases steadily.
+Metrics:
+
+Precision: Shows a steady increase, stabilizing around 0.8, indicating good positive predictive value.
+Recall: Increases gradually, reaching about 0.5, indicating the model is getting better at detecting true positives.
+mAP50: Increases steadily, stabilizing around 0.6, which is a good indicator of the model’s accuracy at a 50% IoU threshold.
+mAP50-95: Shows a slower increase, stabilizing around 0.35, indicating performance across a range of IoU thresholds.
+
+如何對照片進行預測等指令:
+You can customize the prediction process by adjusting various parameters like confidence thresholds, IOU thresholds. There are many yolov8 models to choose from too.
+
